@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "c97lJ5SNQaWxS+HBteZbFtn1+YJ+BXoTEiJuFo4XftTuHXVddSolpv8mja32y6wGx81kew3ZeDtFPxnRyUuCBQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\e132930\\source\\repos\\Gatherly\\Gatherly.Domain\\Gatherly.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\e132930\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
+    "C:\\Users\\e132930\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

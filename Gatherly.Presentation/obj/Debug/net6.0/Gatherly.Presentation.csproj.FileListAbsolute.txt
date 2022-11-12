@@ -1,0 +1,5 @@
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Presentation\obj\Debug\net6.0\Gatherly.Presentation.csproj.AssemblyReference.cache
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Presentation\obj\Debug\net6.0\Gatherly.Presentation.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Presentation\obj\Debug\net6.0\Gatherly.Presentation.AssemblyInfoInputs.cache
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Presentation\obj\Debug\net6.0\Gatherly.Presentation.AssemblyInfo.cs
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Presentation\obj\Debug\net6.0\Gatherly.Presentation.csproj.CoreCompileInputs.cache

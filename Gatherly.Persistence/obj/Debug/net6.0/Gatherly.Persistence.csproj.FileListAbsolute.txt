@@ -1,0 +1,15 @@
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Persistence\obj\Debug\net6.0\Gatherly.Persistence.csproj.AssemblyReference.cache
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Persistence\obj\Debug\net6.0\Gatherly.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Persistence\obj\Debug\net6.0\Gatherly.Persistence.AssemblyInfoInputs.cache
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Persistence\obj\Debug\net6.0\Gatherly.Persistence.AssemblyInfo.cs
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Persistence\obj\Debug\net6.0\Gatherly.Persistence.csproj.CoreCompileInputs.cache
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Persistence\bin\Debug\net6.0\Gatherly.Persistence.deps.json
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Persistence\bin\Debug\net6.0\Gatherly.Persistence.dll
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Persistence\bin\Debug\net6.0\Gatherly.Persistence.pdb
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Persistence\bin\Debug\net6.0\Gatherly.Domain.dll
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Persistence\bin\Debug\net6.0\Gatherly.Domain.pdb
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Persistence\obj\Debug\net6.0\Gatherly.Persistence.csproj.CopyComplete
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Persistence\obj\Debug\net6.0\Gatherly.Persistence.dll
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Persistence\obj\Debug\net6.0\refint\Gatherly.Persistence.dll
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Persistence\obj\Debug\net6.0\Gatherly.Persistence.pdb
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Persistence\obj\Debug\net6.0\ref\Gatherly.Persistence.dll

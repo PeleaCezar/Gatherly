@@ -1,0 +1,12 @@
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Domain\bin\Debug\net6.0\Gatherly.Domain.deps.json
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Domain\bin\Debug\net6.0\Gatherly.Domain.dll
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Domain\bin\Debug\net6.0\Gatherly.Domain.pdb
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Domain\obj\Debug\net6.0\Gatherly.Domain.csproj.AssemblyReference.cache
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Domain\obj\Debug\net6.0\Gatherly.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Domain\obj\Debug\net6.0\Gatherly.Domain.AssemblyInfoInputs.cache
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Domain\obj\Debug\net6.0\Gatherly.Domain.AssemblyInfo.cs
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Domain\obj\Debug\net6.0\Gatherly.Domain.csproj.CoreCompileInputs.cache
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Domain\obj\Debug\net6.0\Gatherly.Domain.dll
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Domain\obj\Debug\net6.0\refint\Gatherly.Domain.dll
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Domain\obj\Debug\net6.0\Gatherly.Domain.pdb
+C:\Users\e132930\source\repos\Gatherly\Gatherly.Domain\obj\Debug\net6.0\ref\Gatherly.Domain.dll

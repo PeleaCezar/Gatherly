@@ -36,17 +36,9 @@ namespace Gatherly.Presentation.Controllers
                 request.FirstName,
                 request.LastName);
 
-            Result<Guid> result = await Sender.Send(command, cancellationToken);
+            Result result = await Sender.Send(command, cancellationToken);
 
-            if(result.IsFailure)
-            {
-                return BadRequest(result.Error);
-            }
-
-            return CreatedAtAction(
-               nameof(GetMemberById),
-               new { id = result.Value },
-               result.Value);
+            return result.IsSuccess ? Ok() : BadRequest(result.Error);
         }
     }
 }

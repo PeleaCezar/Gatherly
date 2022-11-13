@@ -6,7 +6,7 @@ using Gatherly.Domain.ValueObjects;
 
 namespace Gatherly.Application.Members.Commands.CreateMember
 {
-    internal sealed class CreateMemberCommandHandler : ICommandHandler<CreateMemberCommand, Guid>
+    internal sealed class CreateMemberCommandHandler : ICommandHandler<CreateMemberCommand>
     {
         private readonly IMemberRepository _memberRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -19,7 +19,7 @@ namespace Gatherly.Application.Members.Commands.CreateMember
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Result<Guid>> Handle(CreateMemberCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(CreateMemberCommand request, CancellationToken cancellationToken)
         {
             Result<Email> emailResult = Email.Create(request.Email);
             Result<FirstName> firstNameResult = FirstName.Create(request.FirstName);
@@ -45,7 +45,8 @@ namespace Gatherly.Application.Members.Commands.CreateMember
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return member.Id;
+            return Result.Success();
         }
+
     }
 }

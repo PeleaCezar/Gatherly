@@ -5,13 +5,13 @@ using Gatherly.Domain.Repositories;
 
 namespace Gatherly.Application.Members.Events
 {
-    public class MemberRegisteredDomainEventHandler
+    internal sealed class SendWelcomeEmailWhenMemberRegisteredDomainEventHandler
          : IDomainEventHandler<MemberRegisteredDomainEvent>
     {
         private readonly IEmailService _emailService;
         private readonly IMemberRepository _memberRepository;
 
-        public MemberRegisteredDomainEventHandler
+        public SendWelcomeEmailWhenMemberRegisteredDomainEventHandler
             (IEmailService emailService,
             IMemberRepository memberRepository)
         {

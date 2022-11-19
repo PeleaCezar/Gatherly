@@ -40,7 +40,9 @@ namespace Gatherly.Domain.Entities
                 firstName,
                 lastName);
 
-            member.RaiseDomainEvent(new MemberRegisteredDomainEvent(member.Id));
+            member.RaiseDomainEvent(new MemberRegisteredDomainEvent(
+                Guid.NewGuid(),
+                member.Id));
 
             return member;
         }

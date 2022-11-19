@@ -6,6 +6,7 @@ using Quartz;
 using Gatherly.Infrastructure.BackgroundJobs;
 using Gatherly.Application.Behaviors;
 using FluentValidation;
+using Gatherly.Infrastructure.Idempotence;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,8 @@ builder.Services.AddMediatR(Gatherly.Application.AssemblyReference.Assembly);
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
 
 builder.Services.AddValidatorsFromAssembly(Gatherly.Application.AssemblyReference.Assembly, includeInternalTypes: true);
+
+builder.Services.Decorate(typeof(INotificationHandler<>), typeof(IdempotentDomainEventHandler<>));
 
 string connectionString = builder.Configuration.GetConnectionString("Database");
 

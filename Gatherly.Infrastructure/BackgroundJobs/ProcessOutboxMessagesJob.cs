@@ -32,7 +32,12 @@ namespace Gatherly.Infrastructure.BackgroundJobs
             foreach (OutboxMessage outboxMessage in messages)
             {
                 var domainEvent = JsonConvert
-                    .DeserializeObject<IDomainEvent>(outboxMessage.Content);
+                    .DeserializeObject<IDomainEvent>(
+                        outboxMessage.Content,
+                        new JsonSerializerSettings
+                        {
+                            TypeNameHandling = TypeNameHandling.All
+                        });
 
                 if(domainEvent is null)
                 {

@@ -2,7 +2,10 @@
 
 namespace Gatherly.Domain.DomainEvents
 {
-    public sealed record InvitationAcceptedDomainEvent(Guid InvitationId, Guid GatheringId) : IDomainEvent
+    public sealed record InvitationAcceptedDomainEvent(
+        Guid Id,
+        Guid InvitationId,
+        Guid GatheringId) : DomainEvent(Id)
     {
     }
 }

@@ -136,7 +136,7 @@ namespace Gatherly.Domain.Entities
 
             var attendee = invitation.Accept();
 
-            RaiseDomainEvent(new InvitationAcceptedDomainEvent(invitation.Id, Id));
+            RaiseDomainEvent(new InvitationAcceptedDomainEvent(Guid.NewGuid(), invitation.Id, Id));
 
             _attendees.Add(attendee);
             NumberOfAttendees++;

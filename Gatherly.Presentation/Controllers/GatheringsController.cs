@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Gatherly.Presentation.Controllers
 {
+    [Route("api/gatherings")]
     public sealed class GatheringsController : ApiController
     {
-        public GatheringsController(ISender sender) : base(sender)
+        public GatheringsController(ISender sender)
+            : base(sender)
         {
         }
 

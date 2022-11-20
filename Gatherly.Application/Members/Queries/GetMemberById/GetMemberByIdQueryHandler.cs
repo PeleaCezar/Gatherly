@@ -1,4 +1,5 @@
 ﻿using Gatherly.Application.Abstractions.Messaging;
+using Gatherly.Domain.Errors;
 using Gatherly.Domain.Repositories;
 using Gatherly.Domain.Shared;
 
@@ -24,9 +25,8 @@ namespace Gatherly.Application.Members.Queries.GetMemberById
 
             if(member is null)
             {
-                return Result.Failure<MemberResponse>(new Error(
-                 "Member.NotFound",
-                 $"The member with Id {request.MemberId} was not found"));
+                return Result.Failure<MemberResponse>(
+                          DomainErrors.Member.NotFound(request.MemberId));
             }
 
             var response = new MemberResponse(member.Id, member.Email.Value);

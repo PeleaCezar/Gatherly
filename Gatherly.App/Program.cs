@@ -7,6 +7,7 @@ using Gatherly.Infrastructure.BackgroundJobs;
 using Gatherly.Application.Behaviors;
 using FluentValidation;
 using Gatherly.Infrastructure.Idempotence;
+using Gatherly.App.Middlewares;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -73,6 +74,10 @@ builder
 
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddLogging();
+
+builder.Services.AddTransient<GlobalExceptionHandlingMiddleware>();
+
 WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -85,6 +90,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
 app.MapControllers();
 

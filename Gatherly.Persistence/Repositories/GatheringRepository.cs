@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Gatherly.Persistence.Repositories
 {
-    internal sealed class GatheringRepository : IGatheringRepository
+    public sealed class GatheringRepository : IGatheringRepository
     {
         private readonly ApplicationDbContext _dbContext;
         public GatheringRepository(ApplicationDbContext dbContext)

@@ -8,8 +8,31 @@ using Gatherly.Application.Behaviors;
 using FluentValidation;
 using Gatherly.Infrastructure.Idempotence;
 using Gatherly.App.Middlewares;
+using Scrutor;
+using Gatherly.Domain.Repositories;
+using Gatherly.Persistence.Repositories;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
+//when someone injects IMemberRepository from a Constructor, they are going to get an instance of CachedMemberREpository
+//if you recall CachedMemberRepository is injecting memberRepository inside of its constructor
+builder.Services.AddScoped<MemberRepository>();
+builder.Services.AddScoped<IMemberRepository, CachedMemberRepository>();
+
+
+// second aproach
+//builder.Services.AddScoped<IMemberRepository>(provider =>
+//{
+//    var memberRepository = provider.GetService<MemberRepository>();
+
+//    return new CachedMemberRepository(
+//        memberRepository,
+//        provider.GetService<IMemoryCache>()!);
+//});
+
+//third aproach with Scrutor
+//builder.Services.AddScoped<IMemberRepository, MemberRepository>();
+//builder.Services.Decorate<IMemberRepository, CachedMemberRepository>();
 
 builder.Services
        .Scan(selector => selector
@@ -17,6 +40,7 @@ builder.Services
            Gatherly.Infrastructure.AssemblyReference.Assembly,
            Gatherly.Persistence.AssemblyReference.Assembly)
            .AddClasses(false)
+           .UsingRegistrationStrategy(RegistrationStrategy.Skip)
            .AsImplementedInterfaces()
            .WithScopedLifetime());
 

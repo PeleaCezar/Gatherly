@@ -1,5 +1,6 @@
 ﻿using Gatherly.Application.Abstractions.Messaging;
 using Gatherly.Domain.Entities;
+using Gatherly.Domain.Errors;
 using Gatherly.Domain.Repositories;
 using Gatherly.Domain.Shared;
 using Gatherly.Domain.ValueObjects;
@@ -25,21 +26,22 @@ namespace Gatherly.Application.Members.Commands.CreateMember
             Result<FirstName> firstNameResult = FirstName.Create(request.FirstName);
             Result<LastName> lastNameResult = LastName.Create(request.LastName);
 
-            //ussually approach
-            //if (!await _memberRepository.IsEmailUniqueAsync(emailResult.Value, cancellationToken))
-            //{
-            //    return Result.Failure<Guid>(DomainErrors.Member.EmailAlreadyInUse);
-            //}
+            
+            if (!await _memberRepository.IsEmailUniqueAsync(emailResult.Value, cancellationToken))
+            {
+                return Result.Failure<Guid>(DomainErrors.Member.EmailAlreadyInUse);
+            }
 
-            var isEmailUniqueAsync = await _memberRepository
-                   .IsEmailUniqueAsync(emailResult.Value, cancellationToken);
+            //different approach
+            //var isEmailUniqueAsync = await _memberRepository
+            //       .IsEmailUniqueAsync(emailResult.Value, cancellationToken);
 
             var member = Member.Create(
                 Guid.NewGuid(),
                 emailResult.Value,
                 firstNameResult.Value,
-                lastNameResult.Value,
-                isEmailUniqueAsync);
+                lastNameResult.Value
+                /*isEmailUniqueAsync*/);
 
             _memberRepository.Add(member);
 

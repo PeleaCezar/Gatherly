@@ -29,14 +29,14 @@ namespace Gatherly.Domain.Entities
             Guid id,
             Email email,
             FirstName firstName,
-            LastName lastName,
-            bool isEmailUnique)
+            LastName lastName
+           /* bool isEmailUnique*/)
         {
 
-            if(!isEmailUnique)
-            {
-                return null;
-            }
+            //if(!isEmailUnique)
+            //{
+            //    return null;
+            //}
             var member = new Member(
                 id,
                 email,

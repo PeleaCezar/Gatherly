@@ -11,6 +11,8 @@ namespace Gatherly.Domain.Repositories
 
     public interface IGatheringRepository : IRepository<Gathering>
     {
+        Task<List<Gathering>> GetByCreatorIdAsync(Guid creatorId, CancellationToken cancellationToken = default);
+
         Task<Gathering> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
         Task<Gathering> GetByIdWithCreatorAsync(Guid id, CancellationToken cancellationToken = default);

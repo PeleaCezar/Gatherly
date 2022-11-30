@@ -39,6 +39,7 @@ namespace Gatherly.Domain.Entities
         public int? MaximumNumberOfAttendees { get; private set; }
         public DateTime InvitationsExpireAtUtc { get; private set; }
         public int NumberOfAttendees { get;  private set; }
+        public bool Cancelled { get; private set; }
         public IReadOnlyCollection<Attendee> Attendees => _attendees;
         public IReadOnlyCollection<Invitation> Invitations => _invitations;
 

@@ -12,6 +12,18 @@ namespace Gatherly.Persistence.Repositories
             _dbContext = dbContext;
         }
 
+        public async Task<List<Gathering>> GetByCreatorIdAsync(
+            Guid creatorId,
+            CancellationToken cancellationToken = default)
+        {
+            List<Gathering> gatherings = await _dbContext
+                .Set<Gathering>()
+                .Where(gathering => gathering.Creator.Id == creatorId)
+                .ToListAsync(cancellationToken);
+
+            return gatherings;
+        }
+
         public async Task<Gathering> GetByIdAsync(
             Guid id,
             CancellationToken cancellationToken = default)
@@ -22,6 +34,8 @@ namespace Gatherly.Persistence.Repositories
                 .Include(gathering => gathering.Creator)
                 .Include(gathering => gathering.Attendees)
                 .Include(gathering => gathering.Invitations)
+                .IgnoreQueryFilters()
+                .Where(x => x.Cancelled)
                 .FirstOrDefaultAsync(
                     gathering => gathering.Id == id,
                     cancellationToken);

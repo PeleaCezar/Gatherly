@@ -1,4 +1,6 @@
-﻿namespace Gatherly.Persistence.Specifications
+﻿using Gatherly.Domain.Entities;
+
+namespace Gatherly.Persistence.Specifications
 {
     internal class GatheringByIdSplitSpecification : Specification<Gathering>
     {

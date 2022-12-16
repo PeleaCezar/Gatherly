@@ -36,6 +36,8 @@ builder.Services.AddScoped<IMemberRepository, CachedMemberRepository>();
 //builder.Services.AddScoped<IMemberRepository, MemberRepository>();
 //builder.Services.Decorate<IMemberRepository, CachedMemberRepository>();
 
+
+
 builder.Services
        .Scan(selector => selector
        .FromAssemblies(
@@ -45,6 +47,8 @@ builder.Services
            .UsingRegistrationStrategy(RegistrationStrategy.Skip)
            .AsImplementedInterfaces()
            .WithScopedLifetime());
+
+builder.Services.AddMemoryCache();
 
 
 builder.Services.AddMediatR(Gatherly.Application.AssemblyReference.Assembly);

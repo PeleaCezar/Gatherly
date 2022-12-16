@@ -11,7 +11,8 @@ using Gatherly.App.Middlewares;
 using Scrutor;
 using Gatherly.Domain.Repositories;
 using Gatherly.Persistence.Repositories;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Gatherly.App.OptionsSetup;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -103,6 +104,11 @@ builder
 
 builder.Services.AddSwaggerGen();
 
+builder.Services.ConfigureOptions<JwtOptionsSetup>();
+builder.Services.ConfigureOptions<JwtBearerOptionsSetup>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
+
 builder.Services.AddLogging();
 
 builder.Services.AddTransient<GlobalExceptionHandlingMiddleware>();
@@ -117,6 +123,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

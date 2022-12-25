@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Gatherly.Application\Gatherly.Application.csproj" />
+    <ProjectReference Include="..\Gatherly.Infrastructure\Gatherly.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

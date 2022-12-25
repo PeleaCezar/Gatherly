@@ -1,18 +1,18 @@
-using Gatherly.Persistence;
-using Microsoft.EntityFrameworkCore;
-using Gatherly.Persistence.Interceptors;
-using MediatR;
-using Quartz;
-using Gatherly.Infrastructure.BackgroundJobs;
-using Gatherly.Application.Behaviors;
 using FluentValidation;
-using Gatherly.Infrastructure.Idempotence;
 using Gatherly.App.Middlewares;
-using Scrutor;
-using Gatherly.Domain.Repositories;
-using Gatherly.Persistence.Repositories;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Gatherly.App.OptionsSetup;
+using Gatherly.Application.Behaviors;
+using Gatherly.Domain.Repositories;
+using Gatherly.Infrastructure.BackgroundJobs;
+using Gatherly.Infrastructure.Idempotence;
+using Gatherly.Persistence;
+using Gatherly.Persistence.Interceptors;
+using Gatherly.Persistence.Repositories;
+using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Quartz;
+using Scrutor;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -38,28 +38,29 @@ builder.Services.AddScoped<IMemberRepository, CachedMemberRepository>();
 
 
 
-builder.Services
-       .Scan(selector => selector
-       .FromAssemblies(
-           Gatherly.Infrastructure.AssemblyReference.Assembly,
-           Gatherly.Persistence.AssemblyReference.Assembly)
-           .AddClasses(false)
-           .UsingRegistrationStrategy(RegistrationStrategy.Skip)
-           .AsImplementedInterfaces()
-           .WithScopedLifetime());
+builder
+    .Services
+    .Scan(
+        selector => selector
+            .FromAssemblies(
+                Gatherly.Infrastructure.AssemblyReference.Assembly,
+                Gatherly.Persistence.AssemblyReference.Assembly)
+            .AddClasses(false)
+            .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+            .AsMatchingInterface()
+            .WithScopedLifetime());
 
 builder.Services.AddMemoryCache();
-
 
 builder.Services.AddMediatR(Gatherly.Application.AssemblyReference.Assembly);
 
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
 
-builder.Services.AddValidatorsFromAssembly(Gatherly.Application.AssemblyReference.Assembly, includeInternalTypes: true);
-
 builder.Services.Decorate(typeof(INotificationHandler<>), typeof(IdempotentDomainEventHandler<>));
 
-string connectionString = builder.Configuration.GetConnectionString("Database");
+builder.Services.AddValidatorsFromAssembly(Gatherly.Application.AssemblyReference.Assembly, includeInternalTypes: true);
+
+string connectionString = builder.Configuration.GetConnectionString("Database")!;
 
 builder.Services.AddSingleton<ConvertDomainEventsToOutboxMessagesInterceptor>();
 
@@ -80,6 +81,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(
     {
         optionsBuilder.UseSqlServer(connectionString);
     });
+
+builder.Services.AddScoped<IJob, ProcessOutboxMessagesJob>();
 
 builder.Services.AddQuartz(configure =>
 {

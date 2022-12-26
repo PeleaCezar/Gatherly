@@ -3,6 +3,7 @@ using Gatherly.App.Middlewares;
 using Gatherly.App.OptionsSetup;
 using Gatherly.Application.Behaviors;
 using Gatherly.Domain.Repositories;
+using Gatherly.Infrastructure.Authentication;
 using Gatherly.Infrastructure.BackgroundJobs;
 using Gatherly.Infrastructure.Idempotence;
 using Gatherly.Persistence;
@@ -10,6 +11,7 @@ using Gatherly.Persistence.Interceptors;
 using Gatherly.Persistence.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Quartz;
 using Scrutor;
@@ -116,6 +118,10 @@ builder.Services.ConfigureOptions<JwtBearerOptionsSetup>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer();
+
+builder.Services.AddAuthorization();
+builder.Services.AddSingleton<IAuthorizationHandler, PermissionAuthorizationHandler>();
+builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
 
 builder.Services.AddLogging();
 

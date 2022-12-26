@@ -11,25 +11,37 @@ namespace Gatherly.Infrastructure.Authentication
     internal sealed class JwtProvider : IJwtProvider
     {
         private readonly JwtOptions _options;
+        private readonly IPermissionService _permissionService;
 
-        public JwtProvider(IOptions<JwtOptions> options)
+        public JwtProvider(
+            IOptions<JwtOptions> options,
+            IPermissionService permissionService)
         {  
             _options = options.Value;
+            _permissionService = permissionService;
+
         }
 
-        public string Generate(Member member)
+        public async Task<string> GenerateAsync(Member member)
         {
-            var claims = new Claim[]
+            var claims = new List<Claim>
             {
                 new(JwtRegisteredClaimNames.Sub, member.Id.ToString()),
                 new(JwtRegisteredClaimNames.Email, member.Email.Value)
             };
 
+            HashSet<string> permissions = await _permissionService
+                .GetPermissionsAsync(member.Id);
+
+            foreach(string permission in permissions)
+            {
+                claims.Add(new(CustomClaims.Permissions, permission));
+            }
+
             var signingCredentials = new SigningCredentials(
                  new SymmetricSecurityKey(
                      Encoding.UTF8.GetBytes(_options.SecretKey)),
                  SecurityAlgorithms.HmacSha256);
-
 
             var token = new JwtSecurityToken(
                 _options.Issuer,

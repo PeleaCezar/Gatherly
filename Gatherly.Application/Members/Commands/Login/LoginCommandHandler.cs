@@ -20,7 +20,7 @@ namespace Gatherly.Application.Members.Commands.Login
             _memberRepository = memberRepository;
             _jwtProvider = jwtProvider;
         }
-        public async  Task<Result<string>> Handle(LoginCommand request, CancellationToken cancellationToken)
+        public async Task<Result<string>> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
             Result<Email> email = Email.Create(request.Email);
 
@@ -34,7 +34,7 @@ namespace Gatherly.Application.Members.Commands.Login
                     DomainErrors.Member.InvalidCredentials);
             }
 
-            string token = _jwtProvider.Generate(member);
+            string token = await _jwtProvider.GenerateAsync(member);
 
             return token;
         }

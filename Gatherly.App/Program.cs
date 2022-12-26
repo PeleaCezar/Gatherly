@@ -61,7 +61,7 @@ builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipeli
 builder.Services.Decorate(typeof(INotificationHandler<>), typeof(IdempotentDomainEventHandler<>));
 
 builder.Services.AddValidatorsFromAssembly(Gatherly.Application.AssemblyReference.Assembly, includeInternalTypes: true);
-
+//TODO use options pattern
 string connectionString = builder.Configuration.GetConnectionString("Database")!;
 
 builder.Services.AddSingleton<ConvertDomainEventsToOutboxMessagesInterceptor>();

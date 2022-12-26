@@ -18,7 +18,7 @@ namespace Gatherly.Persistence.Configurations
                 .UsingEntity<RolePermission>();
 
             builder.HasMany(x => x.Members)
-                .WithMany();
+                .WithMany(x => x.Roles);
 
             builder.HasData(Role.GetValues());
         }

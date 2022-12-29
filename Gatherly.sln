@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gatherly.Infrastructure", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gatherly.Presentation", "Gatherly.Presentation\Gatherly.Presentation.csproj", "{439A1F24-7582-4B4C-AF78-EF76C4C582CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gatherly.Application.UnitTests", "Gatherly.Application.UnitTests\Gatherly.Application.UnitTests.csproj", "{EFF810CB-A9CF-4725-8ABB-BE80EEBD33F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gatherly.Application.UnitTests", "Gatherly.Application.UnitTests\Gatherly.Application.UnitTests.csproj", "{EFF810CB-A9CF-4725-8ABB-BE80EEBD33F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gatherly.Architecture.UnitTests", "Gatherly.Architecture.UnitTests\Gatherly.Architecture.UnitTests.csproj", "{8C2551E8-C222-4F74-BCFB-7A71C7BC8620}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{EFF810CB-A9CF-4725-8ABB-BE80EEBD33F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFF810CB-A9CF-4725-8ABB-BE80EEBD33F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFF810CB-A9CF-4725-8ABB-BE80EEBD33F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C2551E8-C222-4F74-BCFB-7A71C7BC8620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C2551E8-C222-4F74-BCFB-7A71C7BC8620}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C2551E8-C222-4F74-BCFB-7A71C7BC8620}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C2551E8-C222-4F74-BCFB-7A71C7BC8620}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

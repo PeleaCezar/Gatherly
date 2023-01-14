@@ -11,6 +11,8 @@ namespace Gatherly.App.Configurations
         {
             services.AddMediatR(Application.AssemblyReference.Assembly);
 
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPiepelineBehavior<,>));
+
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
 
             services.Decorate(typeof(INotificationHandler<>), typeof(IdempotentDomainEventHandler<>));

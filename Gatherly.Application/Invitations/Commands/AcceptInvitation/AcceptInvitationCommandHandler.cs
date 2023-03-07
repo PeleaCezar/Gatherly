@@ -41,11 +41,29 @@ namespace Gatherly.Application.Invitations.Commands.AcceptInvitation
                      DomainErrors.Invitation.AlreadyAccepted(request.GatheringId));
             }
 
-            Result<Attendee> attendeeResult = gathering.AcceptInvitation(invitation);
+            using var transaction = _unitOfWork.BeginTransaction();
 
-            if (attendeeResult.IsSuccess)
+            try
             {
-                _attendeeRepository.Add(attendeeResult.Value);
+                Result<Attendee> attendeeResult = gathering.AcceptInvitation(invitation);
+
+                //nu va fi aplicata decat dupa commit 
+                await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+                if (attendeeResult.IsSuccess)
+                {
+                    _attendeeRepository.Add(attendeeResult.Value);
+
+                    //nu va fi aplicata decat dupa commit 
+                    await _unitOfWork.SaveChangesAsync(cancellationToken);
+                }
+
+                transaction.Commit();
+
+            }
+            catch(Exception)
+            {
+                transaction.Rollback();
             }
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);

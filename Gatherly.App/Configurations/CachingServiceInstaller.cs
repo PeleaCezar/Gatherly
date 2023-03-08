@@ -10,6 +10,7 @@ namespace Gatherly.App.Configurations
             //when someone injects IMemberRepository from a Constructor, they are going to get an instance of CachedMemberREpository
             //if you recall CachedMemberRepository is injecting memberRepository inside of its constructor
             services.AddScoped<MemberRepository>();
+           // services.AddScoped<MemberSqlRepository>();
             services.AddScoped<IMemberRepository, CachedMemberRepository>();
 
             services.AddMemoryCache();

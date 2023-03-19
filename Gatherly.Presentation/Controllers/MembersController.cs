@@ -7,12 +7,14 @@ using Gatherly.Domain.Enums;
 using Gatherly.Domain.Shared;
 using Gatherly.Infrastructure.Authentication;
 using Gatherly.Presentation.Abstractions;
+using Gatherly.Presentation.Authentication;
 using Gatherly.Presentation.Contracts.Members;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Gatherly.Presentation.Controllers
 {
+    [ApiKey]
     [Route("api/members")]
     public sealed class MembersController : ApiController
     {

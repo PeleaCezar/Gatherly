@@ -14,6 +14,10 @@ namespace Gatherly.Domain.Errors
                 "Member.NotFound",
                 $"The member with the identifier {id} was not found.");
 
+            public static readonly Error NotExist = new Error(
+                "Members.NotExist",
+                $"There is no members");
+
             public static readonly Error InvalidCredentials = new(
                "Member.InvalidCredentials",
                "The provided credentials are invalid");

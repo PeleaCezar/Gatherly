@@ -24,9 +24,9 @@ namespace Gatherly.Persistence.Repositories
                 snapshot);
         }
 
-        public async Task<Member?> GetByEmailAsync(Email email, CancellationToken cancellationToken = default)
+        public async Task<Member> GetByEmailAsync(Email email, CancellationToken cancellationToken = default)
         {
-            MemberSnapshot? memberSnapshot = await _dbConnection
+            MemberSnapshot memberSnapshot = await _dbConnection
                 .QueryFirstOrDefaultAsync<MemberSnapshot>(
                     @"SELECT Id, Email, FirstName, LastName, CreatedOnUtc, ModifiedOnUtc
                   FROM Members
@@ -41,9 +41,9 @@ namespace Gatherly.Persistence.Repositories
             return Member.FromSnapshot(memberSnapshot);
         }
 
-        public async Task<Member?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<Member> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            MemberSnapshot? memberSnapshot = await _dbConnection
+            MemberSnapshot memberSnapshot = await _dbConnection
                 .QueryFirstOrDefaultAsync<MemberSnapshot>(
                     @"SELECT Id, Email, FirstName, LastName, CreatedOnUtc, ModifiedOnUtc
                   FROM Members
@@ -59,6 +59,11 @@ namespace Gatherly.Persistence.Repositories
         }
 
         public Task<Member> GetByIdWithDapperAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Member>> GetMembersAsync(CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }

@@ -18,7 +18,8 @@ namespace Gatherly.Persistence.Repositories
             _dbContext = dbContext;
             _connectionFactory = connectionFactory;
         }
-            
+        public async Task<List<Member>> GetMembersAsync(CancellationToken cancellationToken = default)
+        => await _dbContext.Set<Member>().ToListAsync(cancellationToken);
 
         public async Task<Member> GetByIdAsync(Guid id, CancellationToken cancellationToken = default) =>
             await _dbContext

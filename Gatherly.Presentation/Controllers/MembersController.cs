@@ -2,6 +2,7 @@
 using Gatherly.Application.Members.Commands.Login;
 using Gatherly.Application.Members.Commands.UpdateMember;
 using Gatherly.Application.Members.Queries.GetMemberById;
+using Gatherly.Application.Members.Queries.GetMembers;
 using Gatherly.Domain.Enums;
 using Gatherly.Domain.Shared;
 using Gatherly.Infrastructure.Authentication;
@@ -18,6 +19,17 @@ namespace Gatherly.Presentation.Controllers
         public MembersController(ISender sender)
             : base(sender)
         {
+        }
+
+        [HasPermission(Permission.ReadMember)]
+        [HttpGet("members")]
+        public async Task<IActionResult> GetMembers(int page, int pageSize, CancellationToken cancellationToken)
+        {
+            var query = new GetMembersQuery(page, pageSize);
+
+            Result<List<MemberResponse>> response = await Sender.Send(query, cancellationToken);
+
+            return response.IsSuccess ? Ok(response.Value) : NotFound(response.Error);
         }
 
         [HasPermission(Permission.ReadMember)]
